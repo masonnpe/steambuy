@@ -1,0 +1,18 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: @pom.artifactId@
+  redis:
+    host: 192.168.10.110
+    port: 6379
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

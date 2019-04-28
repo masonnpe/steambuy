@@ -1,0 +1,20 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: user-service
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server
+      profile: dev
+  thymeleaf:
+    cache: false
+  redis:
+    host: 192.168.10.110
+    port: 6379
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5000/eureka
