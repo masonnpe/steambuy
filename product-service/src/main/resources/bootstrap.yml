@@ -9,6 +9,10 @@ spring:
         enabled: true
         service-id: config-server
       profile: dev
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main.java
 eureka:
   client:
     service-url:

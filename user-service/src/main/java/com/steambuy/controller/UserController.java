@@ -5,6 +5,7 @@ import com.steambuy.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,8 @@ public class UserController {
     }
 
     @PostMapping("register")
-    public ResponseEntity<Void> register(@Valid User user, @RequestParam("code") String code){
+    public ResponseEntity<Void> register(@Valid User user, BindingResult bindingResult, @RequestParam("code") String code){
+        bindingResult.getAllErrors().get(0).getDefaultMessage();
         Boolean result = userService.register(user,code);
         if(result == null || !result){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -45,8 +47,12 @@ public class UserController {
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("auth")
-    public ResponseEntity<Boolean> auth(){
-        return null;
+    @GetMapping("query")
+    public ResponseEntity<User> queryUser(@RequestParam("username")String username,@RequestParam("password")String password){
+        User user = this.userService.queryUser(username,password);
+        if (user == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return ResponseEntity.ok(user);
     }
 }

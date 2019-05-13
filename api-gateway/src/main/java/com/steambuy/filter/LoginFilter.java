@@ -3,12 +3,16 @@ package com.steambuy.filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import com.steambuy.common.utils.CookieUtils;
+import com.steambuy.common.utils.TokenUtil;
+import io.jsonwebtoken.MalformedJwtException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-
+@Slf4j
 @Component
 public class LoginFilter extends ZuulFilter {
     @Override
@@ -34,14 +38,22 @@ public class LoginFilter extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
         // 2) 从上下文中获取request对象
         HttpServletRequest req = ctx.getRequest();
-        // 3) 从请求中获取token
-        String token = req.getParameter("access-token");
+        // 3) 从请求中获取cookie
+        String token = CookieUtils.getCookieValue(req,"token");
         // 4) 判断
         if(token == null || "".equals(token.trim())){
             // 没有token，登录校验失败，拦截
             ctx.setSendZuulResponse(false);
             // 返回401状态码。也可以考虑重定向到登录页。
             ctx.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
+        }else {
+            try{
+                TokenUtil.parseToken(token);
+            }catch (MalformedJwtException e){
+                log.info("token解析出错");
+                ctx.setSendZuulResponse(false);
+                ctx.setResponseStatusCode(HttpStatus.FORBIDDEN.value());
+            }
         }
         // 校验通过，可以考虑把用户信息放入上下文，继续向后执行
         return null;

@@ -2,14 +2,13 @@ package com.steambuy.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.steambuy.bo.SpuBo;
 import com.steambuy.common.model.PageResult;
 import com.steambuy.mapper.BrandMapper;
 import com.steambuy.mapper.SpuMapper;
 import com.steambuy.model.Brand;
 import com.steambuy.model.Spu;
-import com.steambuy.model.SpuBo;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 

@@ -1,7 +1,7 @@
 package com.steambuy.controller;
 
+import com.steambuy.bo.SpuBo;
 import com.steambuy.common.model.PageResult;
-import com.steambuy.model.SpuBo;
 import com.steambuy.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

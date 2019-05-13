@@ -24,7 +24,7 @@ public class NoticeListener {
                     ignoreDeclarationExceptions = "true",
                     type = ExchangeTypes.TOPIC
             ),
-            key = {"item.insert", "item.update"}
+            key = {"verify.code"}
     ))
     public void listenCreate(Map<String,String> msg) throws Exception {
 
