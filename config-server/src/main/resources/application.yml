@@ -8,8 +8,6 @@ spring:
       server:
         git:
           uri: https://github.com/masonnpe/config-repository.git
-          username: masonnpe
-          password: cx245852
           basedir: E:/project/config-repository
 eureka:
   client:

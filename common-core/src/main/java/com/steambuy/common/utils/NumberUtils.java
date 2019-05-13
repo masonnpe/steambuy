@@ -38,12 +38,7 @@ public class NumberUtils {
         return bd.setScale(scale, RoundingMode.HALF_UP).doubleValue();
     }
 
-    /**
-     * 从字符串中根据正则表达式寻找，返回找到的数字数组
-     * @param value
-     * @param regex
-     * @return
-     */
+    // 从字符串中根据正则表达式寻找，返回找到的数字数组
     public static Double[] searchNumber(String value, String regex){
         List<Double> doubles = new ArrayList<>();
         Pattern pattern = Pattern.compile(regex);

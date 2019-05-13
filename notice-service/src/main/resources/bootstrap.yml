@@ -1,0 +1,19 @@
+spring:
+  mail:
+    host: smtp.163.com
+    username: steambuy@163.com
+    password: zxc1996917
+  application:
+    name: notice-service
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server
+      profile: dev
+server:
+  port: 8040
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5000/eureka

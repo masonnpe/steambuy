@@ -9,10 +9,6 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @author: HuYi.Zhang
- * @create: 2018-05-28 10:00
- **/
 @Service
 public class CategoryService {
 

@@ -1,8 +1,10 @@
 package com.steambuy.model;
 
+import lombok.Data;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+@Data
 @Table(name="tb_spu_detail")
 public class SpuDetail {
     @Id
@@ -12,52 +14,4 @@ public class SpuDetail {
     private String specifications;// 商品的全局规格属性
     private String packingList;// 包装清单
     private String afterService;// 售后服务
-
-    public Long getSpuId() {
-        return spuId;
-    }
-
-    public void setSpuId(Long spuId) {
-        this.spuId = spuId;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getSpecTemplate() {
-        return specTemplate;
-    }
-
-    public void setSpecTemplate(String specTemplate) {
-        this.specTemplate = specTemplate;
-    }
-
-    public String getSpecifications() {
-        return specifications;
-    }
-
-    public void setSpecifications(String specifications) {
-        this.specifications = specifications;
-    }
-
-    public String getPackingList() {
-        return packingList;
-    }
-
-    public void setPackingList(String packingList) {
-        this.packingList = packingList;
-    }
-
-    public String getAfterService() {
-        return afterService;
-    }
-
-    public void setAfterService(String afterService) {
-        this.afterService = afterService;
-    }
 }

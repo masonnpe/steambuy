@@ -13,24 +13,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * @author: HuYi.Zhang
- * @create: 2018-06-01 12:07
- **/
 @Service
 public class GoodsService {
 
-    @Autowired
+    @Resource
     private SpuMapper spuMapper;
 
-    @Autowired
+    @Resource
     private CategoryService categoryService;
 
-    @Autowired
+    @Resource
     private BrandMapper brandMapper;
 
     public PageResult<SpuBo> querySpuPage(

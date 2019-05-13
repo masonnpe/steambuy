@@ -1,12 +1,15 @@
 package com.steambuy.handler;
 
-import com.steambuy.common.model.CodeMsg;
-import com.steambuy.common.model.ResponseEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.net.BindException;
 
+/**
+ * 全局异常处理
+ */
 @RestControllerAdvice
 public class BaseExceptionHandler {
 
@@ -15,6 +18,6 @@ public class BaseExceptionHandler {
         if(e instanceof BindException){
 
         }
-        return ResponseEntity.error(CodeMsg.ACCESS_LIMIT_REACHED);
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

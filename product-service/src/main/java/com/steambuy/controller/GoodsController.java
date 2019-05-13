@@ -1,9 +1,8 @@
 package com.steambuy.controller;
 
-import com.leyou.common.pojo.PageResult;
-import com.leyou.item.pojo.Brand;
-import com.leyou.item.pojo.SpuBo;
-import com.leyou.item.service.GoodsService;
+import com.steambuy.common.model.PageResult;
+import com.steambuy.model.SpuBo;
+import com.steambuy.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * @author: HuYi.Zhang
- * @create: 2018-06-01 12:06
- **/
 @RestController
 @RequestMapping
 public class GoodsController {

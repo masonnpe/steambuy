@@ -44,4 +44,5 @@ public class User {
 
     private String salt;
 
+    private String email;
 }

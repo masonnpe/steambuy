@@ -5,10 +5,6 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;
 
-/**
- * @author: HuYi.Zhang
- * @create: 2018-05-28 09:59
- **/
 public interface BrandMapper extends Mapper<Brand> {
 
     @Insert("INSERT INTO tb_category_brand (category_id, brand_id) VALUES (#{cid}, #{bid})")

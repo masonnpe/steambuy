@@ -6,7 +6,6 @@ import com.steambuy.common.model.PageResult;
 import com.steambuy.mapper.BrandMapper;
 import com.steambuy.model.Brand;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
@@ -14,18 +13,13 @@ import tk.mybatis.mapper.entity.Example;
 import javax.annotation.Resource;
 import java.util.List;
 
-/**
- * @author: HuYi.Zhang
- * @create: 2018-05-28 10:00
- **/
 @Service
 public class BrandService {
 
     @Resource
     private BrandMapper brandMapper;
 
-    public PageResult<Brand> queryBrandPage(
-            Integer page, Integer rows, String sortBy, Boolean desc, String key) {
+    public PageResult<Brand> queryBrandPage(Integer page, Integer rows, String sortBy, Boolean desc, String key) {
         // 分页
         PageHelper.startPage(page, rows);
 
@@ -43,6 +37,10 @@ public class BrandService {
         // 创建PageInfo
         PageInfo<Brand> info = new PageInfo<>(list);
         // 返回分页结果
+
+       // PageInfo<Object> objectPageInfo = PageHelper.startPage(1, 10).doSelectPageInfo(() -> brandMapper.selectAll());
+
+
         return new PageResult<>(info.getTotal(), info.getList());
     }
 

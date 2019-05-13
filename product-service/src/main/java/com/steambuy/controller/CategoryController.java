@@ -12,10 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * @author: HuYi.Zhang
- * @create: 2018-05-28 10:01
- **/
 @RestController
 @RequestMapping("category")
 public class CategoryController {

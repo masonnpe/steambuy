@@ -1,0 +1,19 @@
+server:
+  port: 8092
+spring:
+  application:
+    name: search-service
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server
+      profile: dev
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: 127.0.0.1:9300
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5000/eureka
