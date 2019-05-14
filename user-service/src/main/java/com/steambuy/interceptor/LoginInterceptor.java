@@ -28,6 +28,9 @@ public class LoginInterceptor implements HandlerInterceptor {
         try{
             //4.解析成功，说明已经登录
             UserInfo userInfo= TokenUtil.parseToken(token);
+            // 刷新时间
+            String newToken = TokenUtil.createToken(userInfo);
+            CookieUtils.setCookie(request, response, "token", token, 100000);
             //5.放入线程域
             userInfoThreadLocal.set(userInfo);
             return true;
