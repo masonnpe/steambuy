@@ -12,7 +12,7 @@ zuul:
   prefix: /api
   routes:
     user-service: /user/**
-    product-service: /product/**
+    item-service: /item/**
     search-service: /search/**
 ribbon:
   ConnectTimeout: 250 # 连接超时时间(ms)

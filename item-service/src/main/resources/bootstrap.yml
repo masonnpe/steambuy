@@ -1,0 +1,19 @@
+server:
+  port: 8010
+spring:
+  application:
+    name: item-service
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server
+      profile: dev
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5000/eureka

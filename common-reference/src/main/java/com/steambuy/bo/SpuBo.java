@@ -6,6 +6,7 @@ import com.steambuy.model.SpuDetail;
 import lombok.Data;
 
 import javax.persistence.Transient;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -32,4 +33,12 @@ public class SpuBo extends Spu {
      */
     @Transient
     private List<Sku> skus;
+
+    public SpuBo(Long brandId, Long cid1, Long cid2, Long cid3, String title, String subTitle, Boolean saleable, Boolean valid, Date createTime, Date lastUpdateTime) {
+        super(brandId, cid1, cid2, cid3, title, subTitle, saleable, valid, createTime, lastUpdateTime);
+    }
+
+    public SpuBo() {
+        super();
+    }
 }
