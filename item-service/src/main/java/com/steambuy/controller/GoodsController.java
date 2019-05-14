@@ -114,8 +114,10 @@ public class GoodsController{
     @GetMapping("/spu/detail/{id}")
     public ResponseEntity<SpuDetail> querySpuDetailBySpuId(@PathVariable("id") Long id){
         SpuDetail spuDetail = this.goodsService.querySpuDetailBySpuId(id);
+        System.out.println(spuDetail);
         if (spuDetail == null){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+           return ResponseEntity.ok(new SpuDetail());
+            // return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }else {
             return ResponseEntity.ok(spuDetail);
         }

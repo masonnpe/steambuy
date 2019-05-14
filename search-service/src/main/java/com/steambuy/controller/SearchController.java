@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,6 +47,7 @@ public class SearchController implements InitializingBean {
         }
     }
 
+
     @Override
     public void afterPropertiesSet() throws Exception {
         if(!template.createIndex(Item.class)){
@@ -75,11 +77,15 @@ public class SearchController implements InitializingBean {
         for (SpuBo spu : list) {
             try {
                 Item goods = this.searchService.buildItem(spu);
+                if(goods==null){
+                    continue;
+                }
                 goodsList.add(goods);
             } catch (IOException e) {
-                System.out.println("查询失败：" + spu.getId());
+                log.info("查询失败：" + spu.getId());
             }
         }
         this.itemRepository.saveAll(goodsList);
     }
+
 }

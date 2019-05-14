@@ -8,6 +8,7 @@ import com.steambuy.common.utils.NumberUtils;
 import com.steambuy.feign.ItemFeignClient;
 import com.steambuy.model.*;
 import com.steambuy.repository.ItemRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.index.query.BoolQueryBuilder;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class SearchService {
     @Resource
     ElasticsearchTemplate template;
@@ -70,8 +72,11 @@ public class SearchService {
         //2.查询sku
         List<Sku> skus = this.itemFeignClient.querySkuBySpuId(spu.getId());
         //3.查询详情
-        SpuDetail spuDetail = this.itemFeignClient.querySpuDetailBySpuId(spu.getId());
-
+        SpuDetail spuDetail=this.itemFeignClient.querySpuDetailBySpuId(spu.getId());
+        // TODO spudetail为空 兼容
+        if(spuDetail.getSpecifications()==null){
+            return new Item();
+        }
         //4.处理sku,仅封装id，价格、标题、图片、并获得价格集合
         List<Long> prices = new ArrayList<>();
         List<Map<String,Object>> skuLists = new ArrayList<>();
