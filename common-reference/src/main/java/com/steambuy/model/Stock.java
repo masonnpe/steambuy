@@ -22,4 +22,9 @@ public class Stock {
      * 正常库存
      */
     private Long stock;
+
+    public Stock(Long skuId, Long stock) {
+        this.skuId = skuId;
+        this.stock = stock;
+    }
 }

@@ -1,0 +1,5 @@
+request:
+  pool:
+    size: 8
+  queue:
+    size: 100
