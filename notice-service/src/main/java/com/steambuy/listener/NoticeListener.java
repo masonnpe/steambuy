@@ -1,6 +1,7 @@
 package com.steambuy.listener;
 
 import com.steambuy.service.MailService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.ExchangeTypes;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
@@ -12,13 +13,14 @@ import javax.annotation.Resource;
 import java.util.Map;
 
 @Component
+@Slf4j
 public class NoticeListener {
 
     @Resource
     private MailService mailService;
 
     @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(value = "notice.verify.code", durable = "true"), //队列持久化
+            value = @Queue(value = "notice.verify.code", durable = "true"),
             exchange = @Exchange(
                     value = "steambuy.notice.exchange",
                     ignoreDeclarationExceptions = "true",
@@ -27,7 +29,7 @@ public class NoticeListener {
             key = {"verify.code"}
     ))
     public void listenCreate(Map<String,String> msg) throws Exception {
-
-        mailService.sendEmail("841376896@qq.com","");
+        log.info("mail:"+msg.get("mail")+",code:"+msg.get("code"));
+        mailService.sendEmail(msg.get("mail"),msg.get("code"));
     }
 }

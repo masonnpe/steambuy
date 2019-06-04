@@ -13,7 +13,15 @@ spring:
     restart:
       enabled: true
       additional-paths: src/main/java
+  jackson:
+    default-property-inclusion: non_null # 配置json处理时忽略空值
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:5000/eureka
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+feign:
+  hystrix:
+    enabled: true

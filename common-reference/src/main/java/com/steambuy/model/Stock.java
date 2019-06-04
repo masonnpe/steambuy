@@ -27,4 +27,7 @@ public class Stock {
         this.skuId = skuId;
         this.stock = stock;
     }
+
+    public Stock() {
+    }
 }

@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<title>spu list</title>
+
+</head>
+<body>
+<div>
+	<li th:each="category :${categories}">
+		<a href="#" th:text="${category.name}">手机</a>
+	</li>
+
+</div>
+</body>
+</html>
+<script>
+	$(function() {
+		$.ajax({
+			url: "goods/spu/page",
+			type: "GET",
+			contentType: "application/json;charset=utf-8",
+			dataType: "json",
+			// data:JSON.stringify(userinfo),
+			success:function(data){
+				console.log(data);
+			},
+			error:function(){
+				alert("login fail");
+			}
+		});
+	});
+</script>

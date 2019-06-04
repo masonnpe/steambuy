@@ -7,53 +7,28 @@
     <script type="text/javascript" th:src="@{/js/md5.min.js}"></script>
 </head>
 <body>
-<h2 th:text="">登录</h2>
-<form method="post">
-	<input id="username" type="text" name="username"/>
-	<input id="password" type="password" name="password"/>
-	<button type="reset">重置</button>
-	<button type="submit" onclick="doLogin()">登录</button>
+<h2>登录</h2>
+<form>
+    <label for="username">用户名</label><input id="username" type="text" name="username"/>
+    <label for="password">密码</label><input id="password" type="password" name="password"/>
+	<button onclick="doLogin()">登录</button>
 </form>
 </body>
 <script>
-
     function doLogin(){
-
-    var cart={
-        "name":"dasd",
-        "price":1
+        var salt = "steambuy";
+        var password = $("#password").val()+salt;
+        password = md5(password);
+        $.ajax({
+            url: "/login",
+            type: "POST",
+            success:function(data){
+                alert(data);
+            },
+            error:function(){
+                alert("login fail");
+            }
+        });
     }
-
-    localStorage.setItem("cart", cart);
-    localStorage.getItem("cart");
-    localStorage.removeItem("cart");
-
-
-	var input_pwd = $("#password").val();
-	var salt = "steambuy";
-	var str = input_pwd+salt;
-
-	var password = md5(str);
-
-
-	var userinfo={
-		username:$("#username").val(),
-		password: password
-	};
-
-	$.ajax({
-		url: "/auth",
-	    type: "POST",
-		contentType: "application/json;charset=utf-8",
-		dataType: "json",
-	    data:JSON.stringify(userinfo),
-	    success:function(data){
-			alert("data");
-	    },
-	    error:function(){
-			alert("login fail");
-	    }
-	});
-}
 </script>
 </html>

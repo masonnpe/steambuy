@@ -12,14 +12,18 @@ spring:
   thymeleaf:
     cache: false
   redis:
-    host: 192.168.10.110
+    host: 192.168.10.104
     port: 6379
   rabbitmq:
-    host: 192.168.10.110
-    username:
-    password:
+    host: 192.168.10.104
+    username: masonnpe
+    password: cx245852
     port: 5672
+    virtual-host: /steambuy
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:5000/eureka
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true

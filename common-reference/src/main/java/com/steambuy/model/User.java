@@ -1,5 +1,6 @@
 package com.steambuy.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
@@ -27,22 +28,20 @@ public class User {
     /**
      * 密码
      */
-    //@JsonIgnore
+    @JsonIgnore
     @Length(min = 6,max = 25,message = "密码只能在6~25位之间")
     private String password;
 
     /**
      * 电话
      */
-    @Pattern(regexp = "^1[35678]\\d{9}$", message = "手机号格式不正确")
+    @Pattern(regexp = "^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\\d{8}$", message = "手机号格式不正确")
     private String phone;
 
     /**
      * 创建时间
      */
     private Date created;
-
-    private String salt;
 
     private String email;
 }

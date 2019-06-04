@@ -7,9 +7,12 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:5000/eureka
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
 zuul:
   retryable: true
-  prefix: /api
+  prefix: /rest
   routes:
     user-service: /user/**
     item-service: /item/**
